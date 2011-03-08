@@ -1,36 +1,19 @@
 ################################################################################
 ##
-## vteleviziChecker
-## -----------------------------------------------------------------------------
-## This short python script is meant to serve as an 'integrated' notifier of
-## TV shows in Ubuntu with libnotify. It is using the capabilites of web
-## application vtelevizi.cz and its short personal RSS channel.
-##
+## tweetStream
+## ===========
+## Simple GTK application that can display one user's statuses in real time.
+## Currently there's no possibility to change user on the fly. Restart is
+## needed.
 ##
 ## Dependencies
 ## ------------
-## For correct usage, you have to have python-notify package installed.
-## It is available in standard repositories.
-##
-## Usage
-## -----
-## There are three configuration variables.
-## - RSS_BASE_LINK - link to your rss feed from vtelevizi.cz. You have to
-##                   to include the token at the end of the URL.
-## - RSS_UPDATE_TIME - after how many minutes the feed will be refreshed
-## - TELL_ME_N_MINUTES_BEFORE - how many minutes before the start of the show
-##                             the notification should be displayed
-##
-## After configuration, the script runs in an infinite loop. Every minute, it
-## checkes whether some show is starting in n minutes. If yes, a notification
-## is shown. It is then shown every minute until the show starts. Every m
-## minutes, RSS feed is checked again to include updates. Items are stored
-## in local list, every time RSS is refreshed, the list is deleted.
-##
+## PyGTK 2.0. Program can be used without it though. If you call TwitterClient
+## directly, stdout is used as a text pane.
 ##
 ## Author
 ## ------
-## Jirka Chadima, chadima.jiri@gmail.com, 01/2010
+## Jirka Chadima, chadima.jiri@gmail.com, 03/2010
 ##
 ## License
 ## -------
