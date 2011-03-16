@@ -13,6 +13,7 @@ class MainWindow :
         """Window setup, TweetPane is created, window is shown."""
         self.client = client
         self.window = gtk.Window(gtk.WINDOW_TOPLEVEL)
+        self.window.set_title(client.username)
         self.window.connect("delete_event", self.delete_event)
         self.window.connect("destroy", self.destroy)
         self.window.resize(400, 200)
