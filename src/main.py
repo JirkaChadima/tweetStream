@@ -26,6 +26,7 @@
 ### imports
 
 import sys
+import time
 import logging
 from gui import MainWindow
 from twitterclient import TwitterClient
@@ -56,13 +57,28 @@ if __name__ == "__main__":
 
     if len(sys.argv) < 2:
         logging.fatal("No username given! Stopping...")
-        print "Usage: %s [username]" % sys.argv[0]
+        print "Usage: %s [username] [-c]" % sys.argv[0]
         sys.exit(1)
         
     uname = sys.argv[1]
     logging.info("Given username %s" % uname)
 
     client = TwitterClient(uname)
-    win = MainWindow(client)
-    win.main()
+    if len(sys.argv) == 3 and sys.argv[2] == '-c':
+        client.start()
+        shown = []
+        while True:
+            try:
+                time.sleep(3)
+                c = client.storage.get_all_sorted()
+                for t in c:
+                    if t.guid not in shown:
+                        print t
+                        shown.append(t.guid)
+            except KeyboardInterrupt:
+                client.stop()
+                sys.exit(0)
+    else:
+        win = MainWindow(client)
+        win.main()
 

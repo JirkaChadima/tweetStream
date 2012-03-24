@@ -26,15 +26,13 @@ class TwitterClient(Thread):
         self.username = uname
         self.rssLink = RSS_BASE_LINK + self.username
         self.storage = TweetStorage()
+        self.daemon = True
 
     def run(self):
         """Pseudo-infinite loop checking RSS each REFRESH_TIME"""
-        counter = 0
         while not self.halt:
-            if counter % REFRESH_TIME == 0:
-                self.refresh_rss()
-            time.sleep(1)
-            counter += 1
+            self.refresh_rss()
+            time.sleep(REFRESH_TIME)
 
     def stop(self):
         """Stops refreshing loop"""
